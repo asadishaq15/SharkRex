@@ -41,6 +41,12 @@ const FormContainer = styled.div`
   padding: 20px;
 `;
 
+const Heading = styled.h2`
+  text-align: center;
+  margin-bottom: 1.5em;
+  color: #333333;
+`;
+
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -121,6 +127,7 @@ const LoginPage = () => {
           <img src={SharkImage} alt="Login" />
         </ImageContainer>
         <FormContainer>
+          <Heading>Welcome! Please Sign In</Heading>
           <LoginForm />
         </FormContainer>
       </Wrapper>

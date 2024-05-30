@@ -4,6 +4,7 @@ import './App.css';
 import LoginPage from './Pages/Login.jsx';
 import HomePage from './Pages/HomePage.jsx';
 import StatusPage from './Pages/StatusPage.jsx';
+import MainLayout from './Layout/MainLayout';
 
 function App() {
   return (
@@ -12,8 +13,23 @@ function App() {
    
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/status" element={<StatusPage />} />
+      
+          <Route
+            path="/home"
+            element={
+              <MainLayout>
+                <HomePage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/status"
+            element={
+              <MainLayout>
+                <StatusPage />
+              </MainLayout>
+            }
+          />
         </Routes>
       </div>
     </Router>

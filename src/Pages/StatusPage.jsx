@@ -16,10 +16,20 @@ const Bar = styled.div`
   background-color: skyblue;
   width: 100%;
   text-align: center;
-  padding: 30px;
-  font-size: 2em;
+  padding: 20px;
+  font-size: 1.8em;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2em;
+    padding: 10px;
+  }
 `;
 
 const StatusBar = styled.div`
@@ -28,7 +38,18 @@ const StatusBar = styled.div`
   text-align: center;
   padding: 25px;
   font-size: 1.5em;
+  margin-top: 20px;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 1.3em;
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1em;
+    padding: 15px;
+  }
 `;
 
 const ScriptGUI = styled.div`
@@ -39,6 +60,16 @@ const ScriptGUI = styled.div`
   margin-bottom: 30px;
   text-align: center;
   font-size: 1.2em;
+
+  @media (max-width: 768px) {
+    font-size: 1em;
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9em;
+    padding: 15px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -64,6 +95,14 @@ const Button = styled.button`
 
   @media (max-width: 768px) {
     width: 80%;
+    padding: 15px 30px;
+    font-size: 1em;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 0.9em;
   }
 `;
 

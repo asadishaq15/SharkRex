@@ -4,11 +4,19 @@ import styled from 'styled-components';
 // Hardcoded username for demonstration
 const userName = 'John Doe';
 
+const MainContainer = styled.div`
+  max-width:1200px;
+`;
 const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin-top: 80px; /* Add this line to create space between the navbar and the container */
+
+  @media (max-width: 768px) {
+    margin-top: 60px; /* Adjust the margin-top for smaller screens */
+  }
 `;
 
 const WelcomeBar = styled.div`
@@ -29,8 +37,8 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   background-color: #007BFF;
   color: white;
-  padding: 15px 30px; /* Increased padding */
-  margin: 0 10px;
+  padding: 15px 30px; /* Padding remains the same */
+  margin: 0 50px; /* Increased margin to increase space between buttons */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -39,14 +47,20 @@ const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
-`;
 
+  @media (max-width: 768px) {
+    width: 80%;
+
+
+  }
+`;
 const SearchContainer = styled.div`
   background-color: blue;
   color: white;
   padding: 20px;
   margin: 20px 0;
   width: 100%;
+  margin-bottom:0px;
   text-align: center;
   font-size: 1.2em;
   border-radius: 5px;
@@ -79,7 +93,10 @@ const TableCell = styled.td`
 `;
 
 const HomePage = () => {
-  return (
+  return (  
+    <MainContainer>
+
+ 
     <HomePageContainer>
       <WelcomeBar>
         Welcome, {userName}
@@ -109,10 +126,27 @@ const HomePage = () => {
               <Button>Stop</Button>
             </TableCell>
           </TableRow>
+          <TableRow>
+            <TableCell>Example Type</TableCell>
+            <TableCell>2024-05-30</TableCell>
+            <TableCell>Active</TableCell>
+            <TableCell>
+              <Button>Stop</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Example Type</TableCell>
+            <TableCell>2024-05-30</TableCell>
+            <TableCell>Active</TableCell>
+            <TableCell>
+              <Button>Stop</Button>
+            </TableCell>
+          </TableRow>
           {/* Add more rows as needed */}
         </TableBody>
       </Table>
     </HomePageContainer>
+    </MainContainer>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { navlinks } from './navlinks';
 import { Link, useNavigate } from 'react-router-dom';
+import LogoWeb from "../../assets/SharkImage.webp";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -138,10 +139,10 @@ const DropdownLink = styled(Link)`
   }
 `;
 
-const Navbar222 = () => {
+const Navbar222 = ({ handleLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState('light');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -155,11 +156,6 @@ const Navbar222 = () => {
 
   const handleScroll = () => {
     setIsOpen(false);
-  };
-
-  const handleLogout = () => {
-    // Add your logout logic here
-    navigate('/');
   };
 
   useEffect(() => {
@@ -177,13 +173,15 @@ const Navbar222 = () => {
       <GlobalStyle theme={themes[theme]} />
       <HeaderContainer>
         <Link to="/">
-          <Logo src='' alt="Logo" />
+          <Logo src={LogoWeb} alt="Logo" />
         </Link>
         <NavWrapper>
           <NavLinks>
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/status">Status</NavLink>
-            <button onClick={handleLogout} style={{marginLeft:"20px"}}>Logout</button>
+            <button onClick={handleLogout} style={{ marginLeft: "20px" }}>
+              Logout
+            </button>
           </NavLinks>
           <BurgerWrapper onClick={toggleMenu}>
             <BurgerBar />
@@ -197,7 +195,7 @@ const Navbar222 = () => {
               key={link.id}
               onClick={() => {
                 setIsOpen(false);
-                navigate(link.path);
+                navigate(link.url);
               }}
             >
               {link.text}
@@ -209,5 +207,4 @@ const Navbar222 = () => {
     </>
   );
 };
-
 export default Navbar222;

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SharkImage from '../assets/SharkImage.webp';
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -83,40 +86,53 @@ const Button = styled.button`
 `;
 
 const LoginForm = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add your form submission logic here
-    console.log('Form submitted with:', { email, password });
+    setError('');
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/home'); // Redirect to the home page after successful login
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
+
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <FormField>
-        <Label htmlFor="email">Email:</Label>
-        <Input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </FormField>
-      <FormField>
-        <Label htmlFor="password">Password:</Label>
-        <Input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </FormField>
-      <Button type="submit">Login</Button>
-    </StyledForm>
-  );
+    
+        <StyledForm onSubmit={handleSubmit}>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <FormField>
+            <Label htmlFor="email">Email:</Label>
+            <Input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </FormField>
+          <FormField>
+            <Label htmlFor="password">Password:</Label>
+            <Input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </FormField>
+          <Button type="submit">Login</Button>
+    
+        </StyledForm>
+  )
 };
 
 const LoginPage = () => {
